@@ -9,3 +9,9 @@ Sitenin tasarımı "BMW M5 E60"ın genel özelliklerine dayalı olacak zaten WEB
 WEBP çevirme: ffmpeg -i video.mp4 -c:v libwebp -q:v 80 kare_%04d.webp
 
 ffmpeg bulunmuyorsa CMD üzerinde "winget install ffmpeg" indir.
+
+-------------------------------------------------------------------------------------------------------------------------
+
+"16:9 formatında, referans fotoğraflardaki aracın etrafında ultra yavaş, sabit hızda ve hiç hızlanmadan (kesintisiz yavaş tempoda) dönen 360 derece sinematik kamera hareketi. Araç görünüm olarak dip basık (slammed / ultra-lowered stance) bir duruşa sahip olmalı ve zeminle sıfır alçaklıkta görünmelidir. Araç, tamamen yeni, aydınlık ve estetik bir mekanın tam merkezinde, ön planda yer alıyor. Ortamda, arka planda ve ışıklandırmada temiz beyaz tonlar hakim. Aracın genel tasarımı, modeli ve rengi referans görsellerle %100 aynı kalmalıdır; üzerinde hiçbir fiziksel değişiklik olmamalıdır. 4K çözünürlük, ultra gerçekçi, fotogerçekçi, yüksek prodüksiyon otomobil reklamı kalitesi."
+
+"Cinematic 16:9 aspect ratio shot featuring an extremely slow, constant-speed, ultra-smooth 360-degree orbit pan around the car, with zero acceleration or pace changes throughout the video. The car is styled with a slammed, ultra-lowered stance profile, sitting extremely low to the ground. The vehicle is the absolute main focus, centered in the foreground within a bright, aesthetic location dominated by clean, soft white background tones and lighting. The car's physical appearance, model, details, and color must remain 100% strictly identical to the reference images with no morphing or alterations. 4K resolution, photorealistic, high-end automotive commercial standard."
