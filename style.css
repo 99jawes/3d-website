@@ -1,0 +1,368 @@
+/* =====================================================
+   BMW M5 E60 — style.css
+   Soft dark lüks palette + detay section'ları
+===================================================== */
+
+/* ──────────── RESET & KÖK DEĞİŞKENLER ──────────── */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --bg:           #080809;
+  --bg-alt:       #0e0e12;
+  --surface:      #13131a;
+  --glass:        rgba(16, 16, 22, 0.78);
+  --glass-border: rgba(255,255,255,0.07);
+  --accent:       #c8a96e;
+  --accent-dim:   rgba(200,169,110,0.14);
+  --accent-glow:  rgba(200,169,110,0.08);
+  --text:         #ede9e2;
+  --text-dim:     rgba(237,233,226,0.42);
+  --text-muted:   rgba(237,233,226,0.22);
+  --white:        #ffffff;
+  --font-body:    'Inter', system-ui, sans-serif;
+  --font-display: 'Bebas Neue', 'Inter', sans-serif;
+  --nav-h:        64px;
+  --section-pad:  clamp(5rem, 10vh, 9rem);
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-weight: 300;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ──────────── LOADER ──────────── */
+#loader {
+  position: fixed; inset: 0; z-index: 9999;
+  background: var(--bg);
+  display: flex; align-items: center; justify-content: center;
+  transition: opacity 0.8s ease, visibility 0.8s ease;
+}
+#loader.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+
+.loader-inner { text-align: center; display: flex; flex-direction: column; align-items: center; gap: 0.5rem; }
+
+.loader-wordmark {
+  display: flex; gap: 0.6rem; align-items: baseline;
+  margin-bottom: 1.4rem;
+}
+.lw-bmw  { font-family: var(--font-display); font-size: clamp(3rem,9vw,6rem); color: var(--text); letter-spacing:.1em; }
+.lw-m5   { font-family: var(--font-display); font-size: clamp(2.2rem,6vw,4rem); color: var(--accent); letter-spacing:.1em; }
+.lw-e60  { font-size: .75rem; letter-spacing:.35em; text-transform:uppercase; color: var(--text-dim); align-self:flex-end; margin-bottom:.4rem; }
+
+.loader-track  { width: min(300px,70vw); height: 1px; background: rgba(255,255,255,0.08); overflow: hidden; position: relative; }
+.loader-fill   { position: absolute; inset-block: 0; left: 0; width: 0%; background: linear-gradient(90deg, transparent, var(--accent), transparent); transition: width .12s ease; }
+.loader-pct    { font-size: .68rem; letter-spacing: .3em; color: var(--accent); margin-top: .6rem; font-weight: 400; }
+
+/* ──────────── NAVBAR ──────────── */
+#navbar {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  height: var(--nav-h);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 clamp(1.5rem,5vw,4rem);
+  background: rgba(8,8,9,0.0);
+  backdrop-filter: blur(0px);
+  -webkit-backdrop-filter: blur(0px);
+  transition: background .4s, backdrop-filter .4s;
+}
+#navbar.scrolled {
+  background: rgba(8,8,9,0.88);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+.nav-logo {
+  font-family: var(--font-display);
+  font-size: 1.1rem; letter-spacing: .22em;
+  display: flex; align-items: center; gap: .3rem;
+}
+.nl-b { color: #4a90d9; } .nl-m { color: #c8a96e; } .nl-w { color: var(--text); }
+.nl-sep { color: var(--text-dim); font-weight: 100; margin: 0 .3rem; }
+.nl-m5  { color: var(--text); font-size: .95rem; }
+
+.nav-pill {
+  display: flex; gap: 0; border: 1px solid var(--glass-border);
+  border-radius: 999px;
+  background: rgba(255,255,255,0.04);
+  overflow: hidden;
+}
+.nav-pill a {
+  font-size: .65rem; letter-spacing: .22em; text-transform: uppercase;
+  color: var(--text-dim); text-decoration: none;
+  padding: .45rem 1.1rem;
+  transition: background .25s, color .25s;
+}
+.nav-pill a:hover { background: var(--accent-dim); color: var(--text); }
+
+/* ──────────── BÖLÜM 1: CANVAS ──────────── */
+#section-canvas { position: relative; }
+
+/* Scroll uzayı: yükseklik script.js'de ayarlanır */
+#canvas-scroll-space { position: relative; }
+
+/* Sticky wrapper */
+#canvas-sticky {
+  position: sticky; top: 0;
+  width: 100%; height: 100vh;
+  overflow: hidden;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--bg);
+}
+
+#hero-canvas {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+}
+
+/* Degrade overlay */
+.cv-overlay {
+  position: absolute; inset: 0; pointer-events: none; z-index: 2;
+  background:
+    linear-gradient(180deg,
+      rgba(8,8,9,.55) 0%,
+      transparent 15%,
+      transparent 80%,
+      rgba(8,8,9,.8) 100%
+    ),
+    radial-gradient(ellipse 80% 60% at 50% 50%, transparent 40%, rgba(8,8,9,.35) 100%);
+}
+
+/* Sol üst badge */
+.cv-badge {
+  position: absolute; top: calc(var(--nav-h) + 1.8rem); left: clamp(1.5rem,5vw,4rem);
+  z-index: 10; display: flex; flex-direction: column; gap: .4rem;
+  opacity: 0; transform: translateX(-12px);
+  transition: opacity .7s ease .3s, transform .7s ease .3s;
+}
+.cv-badge.show { opacity: 1; transform: translateX(0); }
+.cvb-series { font-size: .65rem; letter-spacing: .35em; text-transform: uppercase; color: var(--accent); font-weight: 400; }
+.cvb-hint   { font-size: .6rem;  letter-spacing: .28em; text-transform: uppercase; color: var(--text-muted); }
+
+/* Sağ üst derece sayacı */
+.cv-counter {
+  position: absolute; top: calc(var(--nav-h) + 1.8rem); right: clamp(1.5rem,5vw,4rem);
+  z-index: 10;
+  opacity: 0; transform: translateX(12px);
+  transition: opacity .7s ease .5s, transform .7s ease .5s;
+}
+.cv-counter.show { opacity: 1; transform: translateX(0); }
+#cvDeg {
+  font-family: var(--font-display); font-size: clamp(1.2rem,3vw,1.8rem);
+  letter-spacing: .1em; color: var(--text-dim);
+}
+
+/* Alt ilerleme çubuğu */
+.cv-progress-bar {
+  position: absolute; bottom: 4.8rem; left: 50%; transform: translateX(-50%);
+  width: min(280px,55vw); height: 1px;
+  background: rgba(255,255,255,0.1); z-index: 10;
+}
+.cv-progress-fill {
+  height: 100%; width: 0%;
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
+  transition: width .05s linear;
+}
+
+/* Alt merkez etiket */
+.cv-footer-label {
+  position: absolute; bottom: 2.8rem; left: 50%; transform: translateX(-50%);
+  z-index: 10; white-space: nowrap;
+}
+.cv-footer-label span {
+  font-size: .62rem; letter-spacing: .32em; text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+/* ──────────── BÖLÜM 2: DETAY SECTION'LARI ──────────── */
+#detail-sections { background: var(--bg); }
+
+.detail-section {
+  padding: var(--section-pad) clamp(1.5rem,8vw,8rem);
+  border-top: 1px solid var(--glass-border);
+  overflow: hidden;
+}
+.detail-section.alt-bg { background: var(--bg-alt); }
+
+/* ── 2-KOLON LAYOUT ── */
+.ds-container {
+  max-width: 1200px; margin: 0 auto;
+  display: grid; grid-template-columns: 1fr 1.6fr;
+  gap: clamp(3rem,6vw,7rem); align-items: start;
+}
+.ds-container.reverse { direction: rtl; }
+.ds-container.reverse > * { direction: ltr; }
+
+/* Sol etiket kolonu */
+.ds-label-col { position: sticky; top: calc(var(--nav-h) + 2rem); }
+
+.ds-eyebrow {
+  font-size: .65rem; letter-spacing: .38em; text-transform: uppercase;
+  color: var(--accent); margin-bottom: 1rem; font-weight: 400;
+}
+
+.ds-title {
+  font-family: var(--font-display);
+  font-size: clamp(3rem,5.5vw,5.5rem);
+  line-height: .92; letter-spacing: .04em;
+  color: var(--text); margin-bottom: 1.6rem;
+}
+
+.accent-text { color: var(--accent); }
+
+.ds-divider {
+  width: 36px; height: 1px;
+  background: var(--accent); opacity: .6;
+  margin-bottom: 1rem;
+}
+
+.ds-code {
+  font-size: .65rem; letter-spacing: .4em;
+  text-transform: uppercase; color: var(--text-muted);
+}
+
+/* Sağ içerik kolonu */
+.ds-content-col { display: flex; flex-direction: column; gap: 1.6rem; }
+
+.ds-lead {
+  font-size: clamp(1.15rem,2vw,1.4rem);
+  line-height: 1.55; font-weight: 300; color: var(--text);
+  letter-spacing: .01em;
+}
+
+.ds-body {
+  font-size: .9rem; line-height: 1.95;
+  color: var(--text-dim); font-weight: 300; letter-spacing: .02em;
+}
+
+/* ── SPEC GRID ── */
+.spec-grid {
+  display: grid; grid-template-columns: repeat(2, 1fr);
+  gap: 1px; background: var(--glass-border);
+  border: 1px solid var(--glass-border); border-radius: 14px; overflow: hidden;
+  margin-top: .4rem;
+}
+
+.spec-card {
+  background: var(--surface);
+  padding: 1.4rem 1.6rem;
+  display: flex; flex-direction: column; gap: .25rem;
+  transition: background .25s;
+}
+.spec-card:hover  { background: rgba(200,169,110,0.07); }
+.spec-card.highlight { background: var(--accent-dim); }
+
+.spec-val {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem,3.5vw,2.6rem);
+  letter-spacing: .06em; color: var(--text); line-height: 1;
+}
+.spec-key  { font-size: .65rem; letter-spacing: .28em; text-transform: uppercase; color: var(--accent); }
+.spec-sub  { font-size: .6rem;  letter-spacing: .2em;  text-transform: uppercase; color: var(--text-muted); margin-top: .1rem; }
+
+/* ── BİLGİ STRIP ── */
+.info-strip {
+  display: flex; flex-direction: column; gap: .8rem;
+  padding: 1.4rem; border: 1px solid var(--glass-border);
+  border-radius: 12px; background: rgba(255,255,255,.02);
+}
+.is-item {
+  display: flex; align-items: center; gap: .9rem;
+  font-size: .78rem; letter-spacing: .06em; color: var(--text-dim);
+}
+.is-icon { color: var(--accent); font-size: .9rem; width: 1.2rem; text-align: center; flex-shrink: 0; }
+
+/* ── ALINTI ── */
+.legacy-quote {
+  border-left: 1px solid var(--accent);
+  padding: 1.2rem 1.6rem;
+  background: var(--accent-glow);
+  border-radius: 0 10px 10px 0;
+}
+.legacy-quote blockquote {
+  font-size: .88rem; line-height: 1.85;
+  color: var(--text-dim); font-style: italic; letter-spacing: .02em;
+}
+.legacy-quote cite {
+  display: block; margin-top: .8rem;
+  font-size: .65rem; letter-spacing: .28em;
+  text-transform: uppercase; color: var(--accent); font-style: normal;
+}
+
+/* ──────────── KAPANIŞ ──────────── */
+.closing-section {
+  padding: clamp(6rem,14vh,12rem) clamp(1.5rem,8vw,8rem);
+  text-align: center;
+  background: var(--bg);
+  border-top: 1px solid var(--glass-border);
+  position: relative; overflow: hidden;
+}
+
+/* Arkaplan glow efekti */
+.closing-section::before {
+  content: '';
+  position: absolute; left: 50%; top: 50%;
+  transform: translate(-50%,-50%);
+  width: 600px; height: 600px;
+  background: radial-gradient(circle, rgba(200,169,110,.07) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.closing-inner { position: relative; z-index: 1; max-width: 680px; margin: 0 auto; }
+
+.closing-eyebrow {
+  font-size: .65rem; letter-spacing: .38em; text-transform: uppercase;
+  color: var(--accent); margin-bottom: 1.4rem;
+}
+.closing-title {
+  font-family: var(--font-display);
+  font-size: clamp(3.5rem,8vw,7rem);
+  letter-spacing: .06em; color: var(--text); line-height: .9;
+  margin-bottom: 2rem;
+}
+.closing-body {
+  font-size: clamp(.85rem,1.5vw,1rem); line-height: 1.95;
+  color: var(--text-dim); letter-spacing: .03em;
+}
+.closing-line {
+  width: 40px; height: 1px; background: var(--accent);
+  opacity: .5; margin: 2.5rem auto;
+}
+.closing-badge {
+  font-size: .62rem; letter-spacing: .55em;
+  text-transform: uppercase; color: var(--accent); font-weight: 400;
+}
+
+/* ──────────── YARDIMCI ──────────── */
+.br-d { display: block; }
+
+/* ──────────── SCROLL REVEAL ANIMASYONU ──────────── */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity .75s cubic-bezier(.22,1,.36,1), transform .75s cubic-bezier(.22,1,.36,1);
+}
+.reveal.in-view { opacity: 1; transform: translateY(0); }
+
+/* ──────────── RESPONSIVE ──────────── */
+@media (max-width: 768px) {
+  .ds-container, .ds-container.reverse {
+    grid-template-columns: 1fr; direction: ltr;
+  }
+  .ds-label-col { position: static; }
+  .spec-grid { grid-template-columns: repeat(2, 1fr); }
+  .nav-pill { display: none; }
+  .br-d { display: inline; }
+}
+@media (max-width: 480px) {
+  .spec-grid { grid-template-columns: 1fr 1fr; }
+}
+
+/* ──────────── SCROLLBAR ──────────── */
+::-webkit-scrollbar        { width: 3px; }
+::-webkit-scrollbar-track  { background: transparent; }
+::-webkit-scrollbar-thumb  { background: rgba(200,169,110,.3); border-radius: 2px; }

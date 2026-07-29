@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="BMW M5 E60 – V10 Atmosferik Motor, 507 Beygir. Efsanenin hikâyesini keşfedin." />
+  <title>BMW M5 E60 — Efsanenin Ruhu</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;1,300&family=Bebas+Neue&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════════════
+       LOADING EKRANI
+  ═══════════════════════════════════════════════ -->
+  <div id="loader">
+    <div class="loader-inner">
+      <div class="loader-wordmark">
+        <span class="lw-bmw">BMW</span>
+        <span class="lw-m5">M5</span>
+        <span class="lw-e60">E60</span>
+      </div>
+      <div class="loader-track">
+        <div class="loader-fill" id="loaderFill"></div>
+      </div>
+      <div class="loader-pct" id="loaderPct">Yükleniyor…</div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════
+       NAVBAR
+  ═══════════════════════════════════════════════ -->
+  <nav id="navbar">
+    <div class="nav-logo">
+      <span class="nl-b">B</span><span class="nl-m">M</span><span class="nl-w">W</span>
+      <span class="nl-sep">|</span>
+      <span class="nl-m5">M5 E60</span>
+    </div>
+    <div class="nav-pill">
+      <a href="#section-canvas">360°</a>
+      <a href="#section-engine">Motor</a>
+      <a href="#section-performance">Performans</a>
+      <a href="#section-legacy">Miras</a>
+    </div>
+  </nav>
+
+  <!-- ═══════════════════════════════════════════════
+       BÖLÜM 1 — SCROLL-LINKED CANVAS (ARABANIN DÖNÜŞÜ)
+       Kullanıcı bu bölümü scroll ettikçe araba döner.
+       Sticky wrapper ekranı sabitler, sadece frame değişir.
+  ═══════════════════════════════════════════════ -->
+  <section id="section-canvas">
+
+    <!-- Scroll'un uzunluğunu belirleyen container -->
+    <div id="canvas-scroll-space">
+
+      <!-- Sticky: ekranda sabit kalır -->
+      <div id="canvas-sticky">
+        <canvas id="hero-canvas"></canvas>
+
+        <!-- Degrade overlay -->
+        <div class="cv-overlay"></div>
+
+        <!-- Sol üst bilgi -->
+        <div class="cv-badge" id="cvBadge">
+          <span class="cvb-series">M5 · E60 · 2005</span>
+          <span class="cvb-hint">↓ döndürmek için kaydırın</span>
+        </div>
+
+        <!-- Sağ üst: frame sayacı (opsiyonel, iptal etmek istersen style.css'de display:none) -->
+        <div class="cv-counter" id="cvCounter">
+          <span id="cvDeg">0°</span>
+        </div>
+
+        <!-- Alt merkez: ilerleme çubuğu -->
+        <div class="cv-progress-bar">
+          <div class="cv-progress-fill" id="cvProgress"></div>
+        </div>
+
+        <!-- Alt ortada sabit metin -->
+        <div class="cv-footer-label">
+          <span>BMW M5 E60 &nbsp;·&nbsp; S85B50 &nbsp;·&nbsp; V10 &nbsp;·&nbsp; 507 PS</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════
+       BÖLÜM 2 — DETAY KARTLARI
+       Canvas bölümü sona erdikten sonra aşağı kayar.
+  ═══════════════════════════════════════════════ -->
+  <div id="detail-sections">
+
+    <!-- ── BÖLÜM: ENGINE ── -->
+    <section class="detail-section" id="section-engine">
+      <div class="ds-container">
+
+        <div class="ds-label-col">
+          <p class="ds-eyebrow">01 — Kalp</p>
+          <h2 class="ds-title">5.0L<br />Atmosferik<br />V10</h2>
+          <div class="ds-divider"></div>
+          <p class="ds-code">S85 B50</p>
+        </div>
+
+        <div class="ds-content-col">
+          <p class="ds-lead">
+            Turbo yoktu. Intercooler yoktu. Sadece 10 silindir,<br class="br-d" />
+            saf hava ve mekanik mükemmellik.
+          </p>
+          <p class="ds-body">
+            BMW M GmbH'ın F1 tecrübesinden ilham alarak geliştirdiği S85B50 motoru,
+            5.0 litrelik hacmiyle 507 beygir güç ve 520 Nm tork üretiyordu.
+            Her silindir bloğu ayrı ayrı işlenmiş, her krank mili elle dengelenmiş.
+            Bu bir fabrikasyon değil, bir sanat eseriydi.
+          </p>
+
+          <div class="spec-grid">
+            <div class="spec-card">
+              <span class="spec-val">507</span>
+              <span class="spec-key">Beygir Gücü</span>
+              <span class="spec-sub">@ 7.750 rpm</span>
+            </div>
+            <div class="spec-card">
+              <span class="spec-val">520</span>
+              <span class="spec-key">Nm Tork</span>
+              <span class="spec-sub">@ 6.100 rpm</span>
+            </div>
+            <div class="spec-card">
+              <span class="spec-val">8.250</span>
+              <span class="spec-key">Maks. Devir</span>
+              <span class="spec-sub">rpm redline</span>
+            </div>
+            <div class="spec-card">
+              <span class="spec-val">10</span>
+              <span class="spec-key">Silindir</span>
+              <span class="spec-sub">V Dizilim · 90°</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ── BÖLÜM: PERFORMANCE ── -->
+    <section class="detail-section alt-bg" id="section-performance">
+      <div class="ds-container reverse">
+
+        <div class="ds-label-col">
+          <p class="ds-eyebrow">02 — Performans</p>
+          <h2 class="ds-title">0–100<br /><span class="accent-text">4.7</span> sn</h2>
+          <div class="ds-divider"></div>
+          <p class="ds-code">SMG III</p>
+        </div>
+
+        <div class="ds-content-col">
+          <p class="ds-lead">
+            Yedi ileri. Sıfır tereddüt.<br class="br-d" />
+            Her vites değişimi 65 milisaniye.
+          </p>
+          <p class="ds-body">
+            Sequential Manual Gearbox III — BMW'nin o dönem ürettiği en gelişmiş aktarma organı.
+            Paddle shift veya tam otomatik mod arasında geçiş yapılabilen bu şanzıman,
+            sürücüye hem konforu hem kontrolü aynı anda sunuyordu.
+            Opsiyonel 6 ileri manuel kutusunu tercih edenler de vardı —
+            ama SMG III, M5'i bir formula aracına dönüştürüyordu.
+          </p>
+
+          <div class="spec-grid">
+            <div class="spec-card highlight">
+              <span class="spec-val">4.7s</span>
+              <span class="spec-key">0 – 100 km/s</span>
+              <span class="spec-sub">SMG III ile</span>
+            </div>
+            <div class="spec-card">
+              <span class="spec-val">305</span>
+              <span class="spec-key">km/s</span>
+              <span class="spec-sub">Elektronik Sınır</span>
+            </div>
+            <div class="spec-card">
+              <span class="spec-val">65ms</span>
+              <span class="spec-key">Vites Süresi</span>
+              <span class="spec-sub">SMG III · Sport mod</span>
+            </div>
+            <div class="spec-card">
+              <span class="spec-val">7</span>
+              <span class="spec-key">Vites</span>
+              <span class="spec-sub">Sekansiyel Kutu</span>
+            </div>
+          </div>
+
+          <!-- Küçük bilgi satırı -->
+          <div class="info-strip">
+            <div class="is-item">
+              <span class="is-icon">⚙</span>
+              <span>EDC — Elektronik Amortisör Kontrolü</span>
+            </div>
+            <div class="is-item">
+              <span class="is-icon">◉</span>
+              <span>M Dynamic Mode · DSC kapatılabilir</span>
+            </div>
+            <div class="is-item">
+              <span class="is-icon">◈</span>
+              <span>Servotronic elektro-hidrolik direksiyon</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ── BÖLÜM: SES & MİRAS ── -->
+    <section class="detail-section" id="section-legacy">
+      <div class="ds-container">
+
+        <div class="ds-label-col">
+          <p class="ds-eyebrow">03 — Efsane</p>
+          <h2 class="ds-title">"Müzik<br />Değil,<br />İtiraf."</h2>
+          <div class="ds-divider"></div>
+          <p class="ds-code">S85 SES</p>
+        </div>
+
+        <div class="ds-content-col">
+          <p class="ds-lead">
+            8.000 rpm'deki o çığlık,<br class="br-d" />
+            bir arabanın çıkarabileceği en ham sestir.
+          </p>
+          <p class="ds-body">
+            BMW M5 E60, 2005 yılında tanıtıldığında otomotiv dünyasını sarstı.
+            Çünkü V10 atmosferik bir motor, sedan bir kasaya sığdırılmıştı.
+            Sadece sürücü değil, yolcular da o sesi hissediyordu.
+            Redline'a yaklaştığında çıkardığı ses, Ferrari 458'le karşılaştırıldı — ve utanmadı.
+          </p>
+
+          <div class="legacy-quote">
+            <blockquote>
+              "Turbo çağı başlamadan önceki son saf nefes.<br />
+              Hiçbir süperzarj, hiçbir elektrik motoru bu sesi üretemez."
+            </blockquote>
+            <cite>— Car & Driver, 2006</cite>
+          </div>
+
+          <div class="spec-grid">
+            <div class="spec-card">
+              <span class="spec-val">2005</span>
+              <span class="spec-key">İlk Üretim</span>
+              <span class="spec-sub">E60 E61 gövdeler</span>
+            </div>
+            <div class="spec-card">
+              <span class="spec-val">2010</span>
+              <span class="spec-key">Son Üretim</span>
+              <span class="spec-sub">F10 nesline geçiş</span>
+            </div>
+            <div class="spec-card">
+              <span class="spec-val">~20k</span>
+              <span class="spec-key">Üretim Adedi</span>
+              <span class="spec-sub">Sedan + Touring</span>
+            </div>
+            <div class="spec-card">
+              <span class="spec-val">1.855</span>
+              <span class="spec-key">Ağırlık (kg)</span>
+              <span class="spec-sub">Kuru · Sedan</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ── BÖLÜM: KAPANIŞ ── -->
+    <section class="closing-section">
+      <div class="closing-inner">
+        <p class="closing-eyebrow">2005 — 2010 &nbsp;·&nbsp; Bir Çağın Sonu</p>
+        <h2 class="closing-title">Efsane Bitmez.</h2>
+        <p class="closing-body">
+          BMW M5 E60, atmosferik V10'u bir sedana giydirdi.<br />
+          Elektrik motorlarının ve turboşarjların egemenliğinde<br />
+          bu sese bir daha kavuşamayacağız.
+        </p>
+        <div class="closing-line"></div>
+        <p class="closing-badge">M · Power · Pure</p>
+      </div>
+    </section>
+
+  </div><!-- /detail-sections -->
+
+  <script src="script.js"></script>
+</body>
+</html>
