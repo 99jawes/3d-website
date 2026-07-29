@@ -1,0 +1,11 @@
+/webp/ Klasörünün içerisinde benim bir video webp framelerim var. Bu frameler ile bir 3D web sitesi yapmak istiyorum ve frameler buna uygun durumda.
+
+
+
+Sitenin tasarımı "BMW M5 E60"ın genel özelliklerine dayalı olacak zaten WEBP Video'da bir "BMW M5 E60" videosu fakat bunu yapmak için bir yapay zeka promptuna ihtiyacım var. Genelde benim yazarak yaptığım sitelerde scroll atarken video sabit kalıyor sayfa aşşağı kayıyor ve bir 3d animasyonu değilde normal video gibi sabit kalıyor en yukarıda. Soft, modern ve bilgi verici bir web sitesi istiyorum. Dediğim gibi soft olacak şekilde webp görseller gözden akıp gidicek sanki bir 3d görselleme gibi gözükmesini istiyorum. Bana bunun için detayında detaylısı istediğimi tak diye yapacak bir prompt yazmanı istiyorum. 
+
+-------------------------------------------------------------------------------------------------------------------------
+
+WEBP çevirme: ffmpeg -i video.mp4 -c:v libwebp -q:v 80 kare_%04d.webp
+
+ffmpeg bulunmuyorsa CMD üzerinde "winget install ffmpeg" indir.
